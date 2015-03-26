@@ -28,13 +28,13 @@ Some areas that need adding or improving are:
 Contribute
 ----------
                 
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
+- Issue Tracker: [github.com/leepenney/ha-pen/issues](https://github.com/leepenney/ha-pen/issues)
+- Source Code: github.com/leepenney/ha-pen
                 
 Support
 -------
                
-If you are having issues, you can report them vie the [issue tracker](http://github/com/leepenney/ha-pen).
+If you are having issues, you can report them vie the [issue tracker](https://github/com/leepenney/ha-pen/issues).
                 
 License
 -------
