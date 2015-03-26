@@ -1,0 +1,12 @@
+[
+    {
+        "state": false, 
+        "num": 1, 
+        "name": "Socket 1"
+    }, 
+    {
+        "state": false, 
+        "num": 2, 
+        "name": "Socket 2"
+    }
+]

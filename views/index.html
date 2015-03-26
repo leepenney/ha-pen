@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='{{ path }}/static/stylesheets/style.css' />
+    <script src="{{ path }}/static/js/ha.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <section id="buttons">
+        {% for socket in sockets %}
+        <div class="switch">
+            <input type="checkbox" name="onoff-{{ socket.num }}" class="onoffswitch" 
+                id="onoff-{{ socket.num }}"
+        {% if socket.state %}checked{% endif %}>
+            <span></span>
+            <label for="onoff-{{ socket.num }}">{{ socket.name }}</label>
+        </div> <!-- switch -->
+        {% endfor %}
+
+        <div class="sml-switch">
+            <input type="checkbox" name="on-01" class="onoffswitch" id="all-on">
+            <span></span>
+            <label for="on-01">All On</label>
+        </div> <!-- sml-switch -->
+        <div class="sml-switch">
+            <input type="checkbox" name="off-00" class="onoffswitch" id="all-off">
+            <span></span>
+            <label for="off-00">All Off</label>
+        </div> <!-- sml-switch -->
+    </section> <!-- buttons -->
+    
+    <section id="timers">
+        {% include 'timer_list.html' %}
+    </section> <!-- timers -->
+    
+    <section id="add">
+        <form id="add-timer">
+            <h3>Add Timer</h3>
+            <label for="socket">Timer:</label>
+            <select name="socket">
+                <option value="">Select socket</option>
+                {% for socket in sockets %}
+                    <option value="{{ socket.num }}">{{ socket.name }}</option>
+                {% endfor %}    
+            </select>
+            <label for="on">On at:</label>
+            <input type="time" name="on">
+            <input type="checkbox" value="on-rise" name="on-rise" id="on-rise">
+            <label for="on-rise" class="but">Sunrise</label>
+            <input type="checkbox" value="on-set" name="on-set" id="on-set">
+            <label for="on-set" class="but">Sunset</label>
+            <label for="off">Off at:</label>
+            <input type="time" name="off"></div>
+            <input type="checkbox" value="off-rise" name=off-rise" id="off-rise">
+            <label for="off-rise" class="but">Sunrise</label>
+            <input type="checkbox" value="off-set" name="off-set" id="off-set">
+            <label for="off-set" class="but">Sunset</label>
+            <label for="days">Days:</label>
+            {% set day_options = ['everyday','weekdays','weekends'] %}
+            <select name="days">
+                {% for day_option in day_options %}
+                   <option value="{{ day_option }}">{{ day_option }}</option>
+                {% endfor %}
+            </select>
+            <label for="rules">Rules:</label>
+            <input type="text" name="rules">
+            <input type="button" name="add_but" id="add_but" value="Add">
+        </form>
+    </section> <!-- add -->
+
+<script>
+    window.onload = listenerSetup;
+</script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+[
+    {
+        "on": "18:27", 
+        "off": "23:00", 
+        "rules": "", 
+        "days": "everyday", 
+        "socket_num": 1, 
+        "sunset": "on", 
+        "sunrise": false
+    }, 
+    {
+        "on": "06:00", 
+        "off": "06:30", 
+        "rules": "on <= sunrise-20", 
+        "days": "weekdays", 
+        "socket_num": 1, 
+        "sunset": false, 
+        "sunrise": false
+    }
+]

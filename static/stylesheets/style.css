@@ -1,0 +1,203 @@
+body {
+  padding: 20px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+@media only screen and (max-device-width: 400px) {
+    body {
+        padding: 0 3px;
+    }
+}
+a {
+  color: #00B7FF;
+}
+.onoffswitch {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
+}
+.onoffswitch + span {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    margin-bottom: 20px;
+    background: transparent;
+}
+.sml-switch .onoffswitch + span {
+    display: inline-block;
+}
+input.onoffswitch + span {
+    padding: 2px;
+    width: 300px;
+    height: 40px;
+    background-color: #fff;
+}
+.sml-switch input.onoffswitch + span {
+    width: 145px;
+}
+input.onoffswitch + span:before, input.onoffswitch + span:after {
+    display: block;
+    position: absolute;
+    content: "";
+    border-radius: 5px;
+}
+.sml-switch input.onoffswitch + span:before, 
+.sml-switch input.onoffswitch + span:after {
+    display: inline-block;
+}
+input.onoffswitch + span:before {
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    background-color: #ddd;
+}
+input.onoffswitch + span:after {
+    top: 5px;
+    left: 5px;
+    bottom: 5px;
+    width: 40px;
+    background-color: #fff;
+}
+input.onoffswitch:checked + span:before {
+    background-color: #8ce196;
+}
+input.onoffswitch:checked + span:after {
+    margin-left: 254px;
+    background-color: #fff
+}
+.sml-switch input.onoffswitch:checked + span:after {
+    margin-left: 127px;
+}
+.switch, .sml-switch {
+    position: relative;
+}
+.switch label, .sml-switch label {
+    position: absolute;
+    display: block;
+    top: 2px;
+    left: 2px;
+    padding-top: 13px;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    font: bold 16px 'Helvetica Neue', helvetica, arial, sans-serif;
+    color: #7f7f7f;
+    box-sizing: border-box;
+}
+.sml-switch label {
+    width: 145px;
+    display: inline-block;
+    margin-left: 20px;
+}
+.sml-switch {
+    display: inline-block;
+}
+section {
+    display: inline-block;
+    width: 380px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+section#timers, section#add {
+    font-size: 120%;
+    line-height: 140%;
+}
+section form {
+    width: 300px;
+}
+ul { 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+}
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+h3 {
+    margin: 5px 0;
+    padding: 0;
+}
+input, select {
+   font-family: 'Helvetica Neue',arial, helvetica, sans-serif;
+   font-size: 16px;
+}
+#timers input[type=checkbox], #add input[type=checkbox] {
+    position: absolute;
+    left: -9999px;
+}
+#timers label, #add label {
+    clear: left;
+    padding-right: 10px;
+}
+#timers select, #add select {
+    margin-bottom: 10px;
+    width: 235px;
+}
+#timers input[type=text], #add input[type=text] {
+    width: 235px;
+}
+#timers input[type=checkbox] + label, #add input[type=checkbox] + label, input[type=button] {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    color: #7f7f7f;
+    padding: 0 5px;
+    width: 133px;
+    border-radius: 5px;
+    background: #ddd;
+    text-transform: uppercase;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    clear: none;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+input[type=button] {
+    width: 145px;
+}
+#timers input + label:before, #add input + label:before {
+    content: "\2715\20";
+}
+#timers input[type=checkbox] + label, #add input[type=checkbox] + label {
+    border-color: #ddd;
+    background: #f8f8f9;
+}
+#timers input[type=checkbox]:checked + label, #add input[type=checkbox]:checked + label {
+    border-color: #ddd;
+    background: #ddd;
+}
+#timers input:checked + label:before, #add input:checked + label:before {
+    content: "\2713\20";
+}
+#timers input[type=checkbox] + label.but:nth-of-type(3n+2),
+#add input[type=checkbox] + label.but:nth-of-type(3n+3) {
+    clear: left;
+    margin-right: 10px;
+}
+#timers label, #timers input, select, #add label, #add input {
+    float: left;
+}
+#add_device label, #add_device input {
+    display: block;
+}
+#add_device input {
+    margin-bottom: 1em;
+}
+input[type=button] + input[type=button] {
+    margin-left: 10px;
+    background: #ff6666;
+    color: #fff;
+}
+form:after {
+    content: "";
+    clear: both;
+    display: table;
+}

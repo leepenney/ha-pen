@@ -1,0 +1,38 @@
+<ul>
+{% for timer in timers %}
+    <li>
+    <form id="form-{{ loop.index0 }}">
+    {% set socket_name = [] %}
+    {% for socket in sockets %}
+        {% if socket.num == timer.socket_num %}
+            {% if socket_name.append(socket.name) %}{% endif %}
+        {% endif %}
+    {% endfor %}
+    <h3>{{ socket_name[0] }}</h3>
+    <label for="on">On:</label>
+    <input type="time" value="{{ timer.on }}" name="on">
+    <input type="checkbox" value="on-rise" {% if timer.sunrise == 'on' %}checked="checked"{% endif %} name="on-rise" id="on-rise-{{ loop.index0 }}">
+    <label for="on-rise-{{ loop.index0 }}" class="but">Sunrise</label>
+    <input type="checkbox" value="on-set" {% if timer.sunset == 'on' %}checked="checked"{% endif %} name="on-set" id="on-set-{{ loop.index0 }}">
+    <label for="on-set-{{ loop.index0 }}" class="but">Sunset</label>
+    <label for="off">Off:</label>
+    <input type="time" value="{{ timer.off }}" name="off">
+    <input type="checkbox" value="off-rise" {% if timer.sunrise == 'off' %}checked="checked"{% endif %} name="off-rise" id="off-rise-{{ loop.index0 }}">
+    <label for="off-rise-{{ loop.index0 }}" class="but">Sunrise</label>
+    <input type="checkbox" value="off-set" {% if timer.sunset == 'off' %}checked="checked"{% endif %} name="off-set" id="off-set-{{ loop.index0 }}">
+    <label for="off-set-{{ loop.index0 }}" class="but">Sunset</label>
+    <label for="days">Days:</label>
+    {% set day_options = ['everyday','weekdays','weekends'] %}
+    <select name="days">
+        {% for day_option in day_options %}
+        <option value="{{ day_option }}" {% if timer.days == day_option %}selected="selected"{% endif %}>{{ day_option }}</option>
+        {% endfor %}
+    </select>
+    <label for="rules">Rules:</label>
+    <input type="text" name="rules" value="{{ timer.rules }}">
+    <input type="button" name="save" id="save-{{ loop.index0 }}" value="Save">
+    <input type="button" name="del" id="del-{{ loop.index0 }}" value="Delete">
+    </form>
+    </li>
+{% endfor %}
+</ul>
