@@ -130,7 +130,7 @@ def show_sockets():
         }
     )
 
-@route('sockets/add/', method='POST')
+@route('/sockets/add/', method='POST')
 def add_socket():
     import urllib
     socket_info = SocketController('webapp')

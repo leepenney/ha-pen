@@ -6,8 +6,8 @@ import time, sys
 gpio_pins = [27,23,22,17] # BCM pins ordered to match the order used in the send codes
 transmit_pin = 25
 modulator_pin = 24
-on_codes = ['1011','1111','1110']
-off_codes = ['0011','0111','0110']
+on_codes = ['1011','1111','1110','1101','1100']
+off_codes = ['0011','0111','0110','0101','0100']
 
 def send_code(pi, code_sent):
 	# turn on the modulator to send the code set

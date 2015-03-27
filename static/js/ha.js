@@ -141,7 +141,6 @@ function add_device(item) {
                 var devices_list = document.getElementById('devices_list');
                 var new_device = document.createElement('li');
                 new_device.innerHTML = '<h3>'+form_fields['name'].value+'</h3>';
-                new_device.innerHTML += '<small>House: '+form_fields['house'].value+' | Unit: '+form_fields['unit'].value+'</small>';
                 devices_list.appendChild(new_device);
             }
         }

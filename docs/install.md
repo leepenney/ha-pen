@@ -99,10 +99,35 @@ cd ..
 sudo chown -R www-data:www-data ha
 ```
 
-Next, we need to modify the 
+Next, we need to replace the Virtual Hosts file with the one supplied in the HA-pen download, first backing up the original (should you hit problems, you can restore it by reversing the parameters):
+
+```
+sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/default.old
+sudo cp /var/www/ha/default /etc/apache2/sites-available/default
+```
 
 Finally, make Apache aware of the changes by restarting the service:
 
     sudo service apache2 restart
 
+## Setting up the Cron jobs
+
+To run the script that check the timers and switch sockets on and off, as well as upating the sunrise and sunset times, we need to add some Cron jobs that run at scheduled intervals.
+
+To this, first open Crontab in edit mode:
+
+    sudo crontab -e
+    
+Now add the following at the end of the file:
+
+```
+* * * * * /usr/bin/python /var/www/ha/lib/scheduler.py >/dev/null 2>&1
+3 0 * * * /usr/bin/python /var/www/ha/lib/sunrise_sunset.py >/dev/null 2>$1
+```
+
+## Congratulations
+
+You should now be able to see the web UI if you visit http://<your Pi's IP>/ha in a browser.
+
+Next up is the [config](config.md]
 
