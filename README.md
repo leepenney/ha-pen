@@ -10,11 +10,16 @@ Features
 - Control multiple sockets
 - Set multiple timers for each socket to control on and off times
 - Allow you to set the timers to come on or go off based on sunrise and sunset
+
+Documentation
+-------------
+
+Full documentation on how to install, setup and use the app can be found here: [ha-pen.readthedocs.org](http://ha-pen.readthedocs.org/)
             
 Installation
 ------------
             
-Getting everything installed and working is a little convuluted, but simple enough, see the docs for full details.            
+Getting everything installed and working is a little convuluted, but simple enough, see [the docs](http://ha-pen.readthedocs.org/) for full details.
 
 Todo
 ----
