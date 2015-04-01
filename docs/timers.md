@@ -59,11 +59,11 @@ Rules is a feature to allow advanced control of when a timer in invoked. It allo
 The following operators can be used in rules:
 
 ```
-- **<=**
-- **>=**
-- **<**
-- **>**
-- **!=**
+<=
+>=
+<
+>
+!=
 ```
 
 In addition, the following keywords are supported:
