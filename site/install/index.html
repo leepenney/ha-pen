@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation - HA-Pen</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> HA-Pen</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+            <li class="toctree-l1 current">
+                <a class="current" href=".">Installation</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../config">Configuring the system</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../sockets">Sockets</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../timers">Timers</a>
+            </li>
+        
+
+    
+        
+            <li class="toctree-l1 ">
+                <a class="" href="../usage">Using the system</a>
+            </li>
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <h1 id="installation">Installation</h1>
+<p>To install HA-Pen and get it working, complete the steps outlined below.</p>
+<p>All of these steps were completed on a clean install of Raspbian.</p>
+<h2 id="before-you-start">Before you start</h2>
+<p>If you have a clean install, I'd suggest updating your package list, using:</p>
+<pre><code>sudo apt-get update
+</code></pre>
+<h2 id="install-pip">Install PIP</h2>
+<p>The Pi comes with Python installed but not pip (a package manager), so first up, install it:</p>
+<pre><code>sudo apt-get install python-pip
+</code></pre>
+<h2 id="install-bottle">Install Bottle</h2>
+<p>Now install <a href="http://bottlepy.org/">Bottle</a>:</p>
+<pre><code>sudo pip install bottle
+</code></pre>
+<h2 id="install-astral">Install Astral</h2>
+<p>The Astral package is used to calculate sunrise and sunset, install using:</p>
+<pre><code>sudo pip install astral
+</code></pre>
+<h2 id="install-jinja2">Install Jinja2</h2>
+<p>Bottle has it's own templating language built in, but I've used Jinja more, so opted to use that. Install using:</p>
+<pre><code>sudo pip install Jinja2
+</code></pre>
+<h2 id="install-pigpio">Install pigpio</h2>
+<p>In order to access the GPIO pins on the Pi, we need a library to do so, pigpio can do this without requiring root privileges. Install using:</p>
+<pre><code>wget abyz.co.uk/rpi/pigpio/pigpio.zip
+unzip pigpio.zip
+cd PIGPIO
+make
+make install
+</code></pre>
+
+<p>These instructions were taken from <a href="http://abyz.co.uk/rpi/pigpio/download.html">this page</a></p>
+<p>Start the pigpio daemon using:</p>
+<pre><code>sudo pigpiod
+</code></pre>
+<p>Finally, add the daemon to your rc.local file to run it at boot (so it's available should the machine restart):</p>
+<pre><code>sudo nano /etc/rc.local
+</code></pre>
+<p>Just before the line</p>
+<pre><code>exit 0
+</code></pre>
+<p>Add:</p>
+<pre><code>sudo pigpio
+</code></pre>
+<p>Hit CTRL+X to exit and type y and Enter when prompted to save it.</p>
+<h2 id="install-apache">Install Apache</h2>
+<p>To view the pages in a browser we need a web server, so install Apache using:</p>
+<pre><code>sudo apt-get install apache2 libapache2-mod-wsgi
+</code></pre>
+<p>Note: If you have Apache installed already, you will need the wsgi extension</p>
+<h2 id="create-a-directory-for-the-ha-pen-files">Create a directory for the HA-Pen files</h2>
+<p>This is used for all of the application's files.</p>
+<pre><code>cd /var/www
+sudo mkdir ha
+</code></pre>
+
+<h2 id="install-ha-pen">Install HA-Pen</h2>
+<p>Copy the HA-Pen files into the newly created directory:</p>
+<pre><code>cd /var/www/ha
+git clone https://github.com/leepenney/ha-pen .
+</code></pre>
+
+<p>Now we need to sort out the permissions so the web server can control the files:</p>
+<pre><code>cd ..
+sudo chown -R www-data:www-data ha
+</code></pre>
+
+<p>Next, we need to replace the Virtual Hosts file with the one supplied in the HA-pen download, first backing up the original (should you hit problems, you can restore it by reversing the parameters):</p>
+<pre><code>sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/default.old
+sudo cp /var/www/ha/default /etc/apache2/sites-available/default
+</code></pre>
+
+<p>Finally, make Apache aware of the changes by restarting the service:</p>
+<pre><code>sudo service apache2 restart
+</code></pre>
+<h2 id="setting-up-the-cron-jobs">Setting up the Cron jobs</h2>
+<p>To run the script that check the timers and switch sockets on and off, as well as upating the sunrise and sunset times, we need to add some Cron jobs that run at scheduled intervals.</p>
+<p>To this, first open Crontab in edit mode:</p>
+<pre><code>sudo crontab -e
+</code></pre>
+<p>Now add the following at the end of the file:</p>
+<pre><code>* * * * * /usr/bin/python /var/www/ha/lib/scheduler.py &gt;/dev/null 2&gt;&amp;1
+3 0 * * * /usr/bin/python /var/www/ha/lib/sunrise_sunset.py &gt;/dev/null 2&gt;$1
+</code></pre>
+
+<h2 id="congratulations">Congratulations</h2>
+<p>You should now be able to see the web UI if you visit http://<your Pi's IP>/ha in a browser.</p>
+<p>Next up is the [config](config.md]</p>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../config" class="btn btn-neutral float-right" title="Configuring the system"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+      <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../config" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>
