@@ -43,7 +43,7 @@ wget abyz.co.uk/rpi/pigpio/pigpio.zip
 unzip pigpio.zip
 cd PIGPIO
 make
-make install
+sudo make install
 ```
 
 These instructions were taken from [this page](http://abyz.co.uk/rpi/pigpio/download.html)
@@ -62,7 +62,7 @@ Just before the line
 
 Add:
 
-    sudo pigpio
+    sudo pigpiod
 
 Hit CTRL+X to exit and type y and Enter when prompted to save it.
 
@@ -105,6 +105,7 @@ Next, we need to replace the Virtual Hosts file with the one supplied in the HA-
 sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/default.old
 sudo cp /var/www/ha/default /etc/apache2/sites-available/default
 ```
+Note: On some versions of Linux you may need to replace 'default' with 000-default.conf in the lines above
 
 Finally, make Apache aware of the changes by restarting the service:
 
@@ -129,5 +130,5 @@ Now add the following at the end of the file:
 
 You should now be able to see the web UI if you visit http://<your Pi's IP>/ha in a browser.
 
-Next up is the [config](config.md]
+Next up is the [config](config.md)
 
