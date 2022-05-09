@@ -3,6 +3,8 @@ HA-Pen
 
 This is a simple home automation setup that uses the [Pi-Mote](https://energenie4u.co.uk/catalogue/product/ENER002-2PI) from Energnie to allow the control of power sockets based on timers set by you.
 
+![Gif Demo of HA-Pen](./static/ha-pen.gif)
+
 Features
 --------
             
